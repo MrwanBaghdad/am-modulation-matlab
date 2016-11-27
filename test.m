@@ -21,3 +21,5 @@ plot(ft, fwave);
 nwav = real(ifft(fwave));
 
 plot(ft,nwav)
+
+sound(nwav)
