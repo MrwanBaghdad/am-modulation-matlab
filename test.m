@@ -19,3 +19,5 @@ fwave = xdFilter .* wav;
 plot(ft, fwave);
 
 nwav = real(ifft(fwave));
+
+plot(ft,nwav)
