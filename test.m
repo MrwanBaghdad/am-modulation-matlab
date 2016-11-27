@@ -22,5 +22,14 @@ nwav = real(ifft(fwave));
 
 plot(ft,nwav)
 sound(nwav)
-carrierF = cos(2*pi*100e3);
+
+
 nwav = resample(5*100e3);
+t=linspace(0,length(wav)*1/fs,length(nwav));
+carrierF = cos(2*pi*100e3*t);
+
+modsignal=nwav*carrierF;
+
+
+
+
