@@ -23,7 +23,7 @@ nwav = real(nwav);
 plot(ft,nwav);
 sound(nwav,fs);
 
-
+% TODO: resmapling  
 nwav = upsample(nwav, 5*100e3);
 t = linspace(0,length(wav)*1/fs,length(nwav));
 carrierF = cos(2*pi*100e3*t);
@@ -38,7 +38,7 @@ n0db = resample(n0db,48e3);
 n10db = resample(n10db,48e3);
 n30db = resample (n30db, 48e3);
 
-
+% end TODO
 
 plot(t,[n0db,n10db,n30db])
 % [n0db, n10db, n30db] = resample([n0db,n10db,n30db],48e3);
