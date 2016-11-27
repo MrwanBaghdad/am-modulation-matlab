@@ -21,5 +21,6 @@ plot(ft, fwave);
 nwav = real(ifft(fwave));
 
 plot(ft,nwav)
-
 sound(nwav)
+carrierF = cos(2*pi*100e3);
+nwav = resample(5*100e3);
