@@ -1,30 +1,30 @@
-fs = 48*10^3;
-wav = audioread('D:\College\Analogue\eric.wav');
-wav = wav';
-plot(wav);
-ft = linspace(-fs/2,fs/2,length(wav));
-spct = (fft(wav));
-spct = abs(fftshift(spct));
-figure
-plot(real(spct));
-
-l = length(wav);
-iFilter = zeros(1,l);
-decPoint = 4e3/48e3;
-fCut = decPoint * l/2;
-iFilter(l/2-fCut : l/2+fCut) = 1;
-
-xdFilter = fftshift(abs(fft(iFilter)));
-
-fwave = iFilter .* spct;
-figure
-plot(ft, fwave);
-
-nwav = ifft(ifftshift(fwave));
-nwav = real(nwav);
-figure
-plot(ft,nwav);
-sound(nwav,fs);
+% fs = 48*10^3;
+% wav = audioread('D:\uni\code\analog\eric.wav');
+% wav = wav';
+% plot(wav);
+% ft = linspace(-fs/2,fs/2,length(wav));
+% spct = fftshift(fft(wav));
+% figure
+% plot(ft, real(spct));
+% 
+% l = length(wav);
+% iFilter = zeros(1,l);
+% decPoint = 4e3/48e3;
+% fCut = decPoint * l/2;
+% iFilter(l/2-fCut : l/2+fCut) = 1;
+% 
+% xdFilter = fftshift(abs(fft(iFilter)));
+% 
+% fwave = iFilter .* spct;
+% figure
+% plot(ft, fwave);
+% 
+% nwav = ifft(ifftshift(fwave));
+% nwav = real(nwav);
+% owav = real(nwav);
+% figure
+% plot(nwav);
+% sound(nwav,fs);
 
 
 % TODO: resmapling  
@@ -43,7 +43,7 @@ n10db = resample(n10db,48e3,5*100e3);
 n30db = resample (n30db, 48e3,5*100e3);
 
 % end TODO
-plot(t,[n0db n10db n30db])
+plot(n0db)
 % [n0db, n10db, n30db] = resample([n0db,n10db,n30db],48e3);
 
 demod0db = n0db .* carrierF;
@@ -55,7 +55,7 @@ demod10db = fftshift(abs(fft(demod10db))) .* xdFilter;
 demod30db = fftshift(abs(fft(demod30db))) .* xdFilter;
 
 
-demod0db = ifft(real(demod0db));
-demod10db = ifft(real(demod10db));
-demod30db = ifft(real(demod30db));
+demod0db = ifft(iffshift(demod0db));
+demod10db = ifft(ifftshift(demod10db));
+demod30db = ifft(ifftshift(demod30db));
 
