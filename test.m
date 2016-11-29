@@ -37,18 +37,27 @@ modsignal = nwav .*carrierF;
 n0db = awgn(modsignal, 0);
 n10db = awgn(modsignal,10);
 n30db = awgn(modsignal,30);
+% default resampling
 
-n0db = resample(n0db,48e3,5*100e3);
-n10db = resample(n10db,48e3,5*100e3);
-n30db = resample (n30db, 48e3,5*100e3);
 
 % end TODO
 plot(n0db)
 % [n0db, n10db, n30db] = resample([n0db,n10db,n30db],48e3);
+:q!
 
 demod0db = n0db .* carrierF;
 demod10db = n10db .* carrierF;
 demod30db = n30db .* carrierF;
+
+% downsampling
+demod0db = resample(demod0db, 48e3, 100e3);
+demod10db = resample(demod10db, 48e3, 100e3);
+demod30db = resample(demld30db, 48e3, 100e3);
+
+demod0db = demod0db(0:length(xdFilter));
+demod10db = demod10db(0:length(xdFilter));
+demod30db = demod30db(0:length(xdFilter));
+
 
 demod0db = fftshift(abs(fft(demod0db)))   .* xdFilter;
 demod10db = fftshift(abs(fft(demod10db))) .* xdFilter;
