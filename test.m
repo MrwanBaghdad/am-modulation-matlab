@@ -54,9 +54,9 @@ demod0db = resample(demod0db, 48e3, 100e3);
 demod10db = resample(demod10db, 48e3, 100e3);
 demod30db = resample(demld30db, 48e3, 100e3);
 
-demod0db = demod0db(0:length(xdFilter));
-demod10db = demod10db(0:length(xdFilter));
-demod30db = demod30db(0:length(xdFilter));
+demod0db = demod0db(1:length(xdFilter));
+demod10db = demod10db(1:length(xdFilter));
+demod30db = demod30db(1:length(xdFilter));
 
 
 demod0db = fftshift(abs(fft(demod0db)))   .* xdFilter;
