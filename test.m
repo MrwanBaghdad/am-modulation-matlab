@@ -27,7 +27,7 @@
 % sound(owav,fs);
 
 
-%Phase II%%%%%%%%%%%%%%%%%%%%%%%
+% %Phase II%%%%%%%%%%%%%%%%%%%%%%%
 ft = resample(ft, 5e5, 48e3);  
 nwav = resample(owav, 5e5, 48e3);
 t = linspace(0, length(wav)*1/fs, length(nwav));
@@ -42,9 +42,9 @@ modsignal = nwav .* carrierF;
 
 
 
-n0db  = awgn(modsignal, 0);
-n10db = awgn(modsignal,10);
-n30db = awgn(modsignal,30);
+n0db  = awgn(modsignal, 0,'measured');
+n10db = awgn(modsignal,10,'measured');
+n30db = awgn(modsignal,30,'measured');
 
 
 demod0db  = n0db .* carrierF;
@@ -68,7 +68,7 @@ demod30db = demod30db(1:length(iFilter));
 
 % % % demod0db  = fftshift(fft(demod0db))  .* xdFilter;
 % % % demod10db = fftshift(fft(demod10db)) .* xdFilter;
-demod30db = (abs(fftshift(fft(demod30db))));
+demod30db = ((fftshift(fft(demod30db))));
 demod30db  = demod30db .* iFilter;
 plot(real(demod30db));
 
