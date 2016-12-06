@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 5551cf9... fix syntax
 % fs = 48*10^3;
 % wav = audioread('D:\uni\code\analog\eric.wav');
 % wav = wav';
@@ -91,7 +94,7 @@ n10db = awgn(modsignal, 10, 'measured');
 n30db = awgn(modsignal, 30, 'measured');
 
 demod0db  = n0db .* carrierF;
->>>>>>> origin/master
+
 demod10db = n10db .* carrierF;
 demod30db = n30db .* carrierF;
 
@@ -100,7 +103,6 @@ demod0db = resample(demod0db, 48e3, 100e3);
 demod10db = resample(demod10db, 48e3, 100e3);
 demod30db = resample(demld30db, 48e3, 100e3);
 
-<<<<<<< HEAD
 demod0db = demod0db(1:length(xdFilter));
 demod10db = demod10db(1:length(xdFilter));
 demod30db = demod30db(1:length(xdFilter));
@@ -160,5 +162,5 @@ demod_phaseErr = demod_phaseErr(1:length(iFilter));
 filtered_phaseErr = demod_phaseErr .* iFilter;
 filtered_phaseErr = fftshift(fft(filtered_phaseErr));
 sound_filtered_phaseErr = ifft(ifftshift(filtered_phaseErr));
->>>>>>> origin/master
+
 
